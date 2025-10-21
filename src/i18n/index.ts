@@ -16,11 +16,12 @@ const DEFAULTS = {
   }
 } as const;
 
+// Shallow/Deep merge helper so that t.hero.* is always defined
 function deepMerge<T extends Record<string, any>, U extends Record<string, any>>(a: T, b: U): T & U {
   const out: any = Array.isArray(a) ? [...a] : { ...a };
   for (const [k, v] of Object.entries(b)) {
     if (v && typeof v === 'object' && !Array.isArray(v)) {
-      out[k] = deepMerge((out[k] ?? {}), v as any);
+      out[k] = deepMerge((out[k] ?? {}) as any, v as any);
     } else {
       out[k] = v;
     }
@@ -32,10 +33,18 @@ export function getDefaultLang(): Lang {
   return 'tr';
 }
 
+// Safer cookie reader (no RegExp to avoid SSR quirks)
 function readCookie(name: string): string | null {
   if (typeof document === 'undefined') return null;
-  const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\\]\\\\/+^])/g, '\\\\$1') + '=([^;]*)'));
-  return m ? decodeURIComponent(m[1]) : null;
+  const list = (document.cookie || '').split('; ').filter(Boolean);
+  for (const item of list) {
+    const idx = item.indexOf('=');
+    if (idx === -1) continue;
+    const key = item.slice(0, idx);
+    const val = item.slice(idx + 1);
+    if (key === name) return decodeURIComponent(val);
+  }
+  return null;
 }
 
 export function getLangFromCookie(): Lang {
@@ -52,11 +61,10 @@ export function setLangCookie(lang: Lang) {
 
 export function getDict(lang: Lang) {
   const base = dicts[lang] ?? dicts[getDefaultLang()];
-  // Her durumda en azından DEFAULTS ile dön: t.hero her zaman var olur
   return deepMerge(DEFAULTS as any, (base || {}) as any) as typeof tr;
 }
 
-// Dotted path okuma (opsiyonel)
+// Optional helper: dotted-path reader
 export function t(lang: Lang, path: string): string {
   const dict = getDict(lang);
   const val = path.split('.').reduce<any>((acc, k) => (acc && typeof acc === 'object' ? acc[k] : undefined), dict);
