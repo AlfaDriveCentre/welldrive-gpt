@@ -5,10 +5,34 @@
     "support": "Support",
     "contact": "Contact",
     "language": "Language",
-    "search_placeholder": "Search the site..."
+    "searchPlaceholder": "Search the site…"
+  },
+  "hero": {
+    "title": "Powerful. Compact. Flexible.",
+    "subtitle": "The new WellDrive WD Series",
+    "desc": "High efficiency, smart protection and easy commissioning for industrial applications."
   },
   "cta": {
-    "requestQuote": "Request a quote",
-    "seeDetails": "See details"
+    "offer": "Get a quote",
+    "details": "See details"
+  },
+  "wd750": {
+    "title": "WD750 – Smart & Compact",
+    "desc": "Compact body, strong performance and easy use for general purpose."
+  },
+  "wd770": {
+    "title": "WD770 – HVAC & Aqua",
+    "desc": "Energy saving, advanced protection and ready macros for pump and fan."
+  },
+  "support": {
+    "title": "Support",
+    "desc": "Manuals, software and technical docs."
+  },
+  "contact": {
+    "title": "Contact",
+    "desc": "Our experts are ready to help."
+  },
+  "footer": {
+    "sections": []
   }
 }

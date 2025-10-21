@@ -33,15 +33,6 @@
     "desc": "Uzman ekibimiz sorularınızı yanıtlasın."
   },
   "footer": {
-    "legal": "Yasal",
-    "privacy": "Gizlilik",
-    "cookies": "Çerez Politikası",
-    "sitemap": "Site Haritası",
-    "company": "Şirket",
-    "about": "Hakkımızda",
-    "careers": "Kariyer",
-    "contact": "İletişim",
-    "docs": "Belgeler",
     "sections": [
       {
         "title": "Şirket",

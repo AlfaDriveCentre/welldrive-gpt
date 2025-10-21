@@ -2,13 +2,37 @@
   "nav": {
     "wd750": "WD750",
     "wd770": "WD770",
-    "support": "Support",
-    "contact": "Contact",
-    "language": "Language",
-    "search_placeholder": "Search the site..."
+    "support": "Поддержка",
+    "contact": "Контакты",
+    "language": "Язык",
+    "searchPlaceholder": "Искать на сайте…"
+  },
+  "hero": {
+    "title": "Мощный. Компактный. Гибкий.",
+    "subtitle": "Новая серия WellDrive WD",
+    "desc": "Высокая эффективность, умная защита и простое внедрение."
   },
   "cta": {
-    "requestQuote": "Request a quote",
-    "seeDetails": "See details"
+    "offer": "Запросить цену",
+    "details": "Подробнее"
+  },
+  "wd750": {
+    "title": "WD750 – Умный и Компактный",
+    "desc": "Компактный корпус и высокая производительность."
+  },
+  "wd770": {
+    "title": "WD770 – HVAC & Aqua",
+    "desc": "Экономия энергии и защита для насосов и вентиляторов."
+  },
+  "support": {
+    "title": "Поддержка",
+    "desc": "Руководства и технические документы."
+  },
+  "contact": {
+    "title": "Контакты",
+    "desc": "Ответим на ваши вопросы."
+  },
+  "footer": {
+    "sections": []
   }
 }
