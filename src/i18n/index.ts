@@ -1,4 +1,3 @@
-
 import tr from './tr.json';
 import en from './en.json';
 import ru from './ru.json';
