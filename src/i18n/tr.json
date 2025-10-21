@@ -5,87 +5,42 @@
     "support": "Destek",
     "contact": "İletişim",
     "language": "Dil / Language",
-    "search_placeholder": "Sitede ara..."
+    "searchPlaceholder": "Sitede ara…"
+  },
+  "hero": {
+    "title": "Güçlü. Kompakt. Esnek.",
+    "subtitle": "Yeni nesil WellDrive WD Serisi",
+    "desc": "Endüstriyel uygulamalar için yüksek verim, akıllı koruma ve kolay devreye alma."
   },
   "cta": {
-    "requestQuote": "Teklif isteyin",
-    "seeDetails": "Detayları görün"
+    "offer": "Teklif isteyin",
+    "details": "Detayları görün"
   },
-  "home": {
-    "title": "WellDrive",
-    "subtitle": "Premium, Güçlü, Akıllı, Kompakt, Esnek ve Size Özel",
-    "p1": "Dünyanın en büyük otomasyon firmalarından biri olan Honeywell’in yeni nesil frekans konvertörü ailesinin adı; WellDrive. Tüm uygulamalarınızı kapsayan ve görkemli ürünler hizmetinizde.",
-    "p2": "Bu premium sürücüler, ihtiyacınızı tam olarak karşılayan üstün bir mühendislik ürünüdür. Tüm gelişmiş özellikleri ile uygulamalarınızı tam olarak kapsayacak şekilde hazırlanmıştır.",
-    "p3": "Esnek yapısı, üstün yazılımı sayesinde uygulamanız için mükemmel çözümü bulabilirsiniz. Güçlü yapısı ve donanım özellikleri sayesinde zorlu ortam koşullarına dayanıklıdır.",
-    "wd750_title": "Kompakt ve Akıllı:  WD750",
-    "wd750_desc": "Genel maksatlı tüm uygulamalar, ağır hizmet koşulları, geniş haberleşme seçenekleri veya maliyet tasarrufu sağlayacağınız akıllı ve kompakt çözümler için",
-    "wd770_title": "Kusursuz İşlevsellik:  WD770",
-    "wd770_desc": "Tüm HVAC, AQUA uygulamaları, Master-Slave Çalışma, Ortak DC Bara paylaşımı, Genel maksatlı tüm uygulamalar, geniş haberleşme seçenekleri ve mükemmel çözüm sağlayacağınız premium ürünler için",
-    "team_title": "Uzman ekip. Güçlü Destek.",
-    "team_desc": "WellDrive ürün ailesi hakkında birçok bilgiye bu site üzerinden erişim sağlayabilirsiniz. İhtiyacınıza göre doğru ürünü seçmek, fiyatlandırmak, sistem tasarımı, devreye alma işlemleri ve diğer tüm mühendislik hizmetleri için uzman ekibimizle temasa geçebilirsiniz.",
-    "support_go": "Destek sayfasına gidin.",
-    "contact_go": "Bizimle iletişime geçin."
+  "wd750": {
+    "title": "WD750 – Akıllı ve Kompakt",
+    "desc": "Genel amaçlı uygulamalar için kompakt gövde, güçlü performans ve kolay kullanım."
+  },
+  "wd770": {
+    "title": "WD770 – HVAC & Aqua Uzmanı",
+    "desc": "Pompa ve fan uygulamalarında enerji tasarrufu, gelişmiş koruma ve hazır makrolar."
+  },
+  "support": {
+    "title": "Destek",
+    "desc": "Kılavuzlar, yazılımlar ve teknik belgeler."
+  },
+  "contact": {
+    "title": "İletişim",
+    "desc": "Uzman ekibimiz sorularınızı yanıtlasın."
   },
   "footer": {
-    "columns": [
-      {
-        "title": "Genel Bilgiler",
-        "links": [
-          {
-            "label": "WellDrive",
-            "href": "/"
-          },
-          {
-            "label": "WD750",
-            "href": "/wd750"
-          },
-          {
-            "label": "WD770",
-            "href": "/wd770"
-          },
-          {
-            "label": "İndirme Merkezi",
-            "href": "/destek#indir"
-          },
-          {
-            "label": "Uygulama Merkezi",
-            "href": "/destek#uygulama"
-          }
-        ]
-      },
-      {
-        "title": "Destek",
-        "links": [
-          {
-            "label": "Destek",
-            "href": "/destek"
-          }
-        ]
-      },
-      {
-        "title": "İletişim",
-        "links": [
-          {
-            "label": "İletişim Formu",
-            "href": "/iletisim"
-          }
-        ]
-      }
-    ],
-    "legal": {
-      "copyright": "Telif Hakkı © 2025 Alfa Drive Centre. Tüm hakları saklıdır.",
-      "privacy": {
-        "label": "Gizlilik Politikası",
-        "href": "/gizlilik"
-      },
-      "cookies": {
-        "label": "Çerezlerin Kullanımı",
-        "href": "/cerezler"
-      },
-      "sitemap": {
-        "label": "Site Haritası",
-        "href": "/sitemap"
-      }
-    }
+    "legal": "Yasal",
+    "privacy": "Gizlilik",
+    "cookies": "Çerez Politikası",
+    "sitemap": "Site Haritası",
+    "company": "Şirket",
+    "about": "Hakkımızda",
+    "careers": "Kariyer",
+    "contact": "İletişim",
+    "docs": "Belgeler"
   }
 }
