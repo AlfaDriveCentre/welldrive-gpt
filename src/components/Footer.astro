@@ -2,9 +2,10 @@
 interface Link { label: string; href: string; }
 interface Section { title: string; links: Link[]; }
 
-import { loadLang } from "../i18n";
+import { getDict, getLangFromCookie, getDefaultLang, type Lang } from "../i18n";
 
-const t = await loadLang('tr'); // runtime dil yönetimi ekleyebiliriz; TR varsayılan
+const lang: Lang = typeof document === 'undefined' ? getDefaultLang() : getLangFromCookie();
+const t = getDict(lang); // JSON sözlüğünü alıyoruz (footer metinleri burada)
 const fallbackSections: Section[] = [
   {
     title: (t?.footer?.company ?? "Şirket"),
