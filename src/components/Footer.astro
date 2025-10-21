@@ -1,31 +1,49 @@
 ---
-import { loadLang } from '../i18n/index.ts';
-const lang = 'tr'; // default for now
-const t = await loadLang(lang);
+interface Link { label: string; href: string; }
+interface Section { title: string; links: Link[]; }
+
+import { loadLang } from "../i18n";
+
+const t = await loadLang('tr'); // runtime dil yönetimi ekleyebiliriz; TR varsayılan
+const fallbackSections: Section[] = [
+  {
+    title: (t?.footer?.company ?? "Şirket"),
+    links: [
+      { label: (t?.footer?.about ?? "Hakkımızda"), href: "/#about" },
+      { label: (t?.footer?.contact ?? "İletişim"), href: "/iletisim" }
+    ]
+  },
+  {
+    title: (t?.footer?.docs ?? "Belgeler"),
+    links: [
+      { label: (t?.support?.title ?? "Destek"), href: "/destek" }
+    ]
+  },
+  {
+    title: (t?.footer?.legal ?? "Yasal"),
+    links: [
+      { label: (t?.footer?.privacy ?? "Gizlilik"), href: "/privacy" },
+      { label: (t?.footer?.cookies ?? "Çerez Politikası"), href: "/cookies" },
+      { label: (t?.footer?.sitemap ?? "Site Haritası"), href: "/sitemap" }
+    ]
+  }
+];
+
+const sections: Section[] = (t?.footer?.sections as Section[]) ?? fallbackSections;
+const textColor = "text-[#666666]"; // K:60 tonu
 ---
-<footer class="mt-24 border-t border-gray-200 bg-white">
-  <div class="container-x py-12">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      {t.footer.columns.map((col) => (
-        <div>
-          <h4 class="text-sm font-semibold text-brand-text">{col.title}</h4>
-          <ul class="mt-4 space-y-2">
-            {col.links.map((item) => (
-              <li><a class="text-sm hover:underline text-brand-text focus-ring" href={item.href}>{item.label}</a></li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-    <div class="mt-10 pt-6 border-t border-gray-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-brand-text">
-      <p>{t.footer.legal.copyright}</p>
-      <div class="flex items-center gap-4">
-        <a href={t.footer.legal.privacy.href} class="hover:underline focus-ring">{t.footer.legal.privacy.label}</a>
-        <span>•</span>
-        <a href={t.footer.legal.cookies.href} class="hover:underline focus-ring">{t.footer.legal.cookies.label}</a>
-        <span>•</span>
-        <a href={t.footer.legal.sitemap.href} class="hover:underline focus-ring">{t.footer.legal.sitemap.label}</a>
+<footer class="mx-auto max-w-screen-xl px-4 py-12">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+    {sections.map((section) => (
+      <div>
+        <h3 class={`mb-4 font-semibold ${textColor}`}>{section.title}</h3>
+        <ul class="space-y-2">
+          {section.links?.map((link) => (
+            <li><a href={link.href} class={`${textColor} hover:underline`}>{link.label}</a></li>
+          ))}
+        </ul>
       </div>
-    </div>
+    ))}
   </div>
+  <div class={`mt-10 text-sm ${textColor}`}>© {new Date().getFullYear()} WellDrive</div>
 </footer>
