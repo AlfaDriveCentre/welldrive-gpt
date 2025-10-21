@@ -1,50 +1,45 @@
 ---
-interface Link { label: string; href: string; }
-interface Section { title: string; links: Link[]; }
+import type { Lang } from "../i18n/index";
+import { getDict } from "../i18n/index";
 
-import { getDict, getLangFromCookie, getDefaultLang, type Lang } from "../i18n";
+// SSR-safe: cookie yok, varsayılan TR
+const lang: Lang = 'tr';
+const t = getDict(lang);
 
-const lang: Lang = typeof document === 'undefined' ? getDefaultLang() : getLangFromCookie();
-const t = getDict(lang); // JSON sözlüğünü alıyoruz (footer metinleri burada)
-const fallbackSections: Section[] = [
-  {
-    title: (t?.footer?.company ?? "Şirket"),
-    links: [
-      { label: (t?.footer?.about ?? "Hakkımızda"), href: "/#about" },
-      { label: (t?.footer?.contact ?? "İletişim"), href: "/iletisim" }
-    ]
-  },
-  {
-    title: (t?.footer?.docs ?? "Belgeler"),
-    links: [
-      { label: (t?.support?.title ?? "Destek"), href: "/destek" }
-    ]
-  },
-  {
-    title: (t?.footer?.legal ?? "Yasal"),
-    links: [
-      { label: (t?.footer?.privacy ?? "Gizlilik"), href: "/privacy" },
-      { label: (t?.footer?.cookies ?? "Çerez Politikası"), href: "/cookies" },
-      { label: (t?.footer?.sitemap ?? "Site Haritası"), href: "/sitemap" }
-    ]
-  }
-];
-
-const sections: Section[] = (t?.footer?.sections as Section[]) ?? fallbackSections;
-const textColor = "text-[#666666]"; // K:60 tonu
+const sections = Array.isArray(t?.footer?.sections) ? t.footer.sections : [];
+const legal = Array.isArray(t?.footer?.legal) ? t.footer.legal : [];
+const note = typeof t?.footer?.note === 'string' ? t.footer.note : '';
 ---
-<footer class="mx-auto max-w-screen-xl px-4 py-12">
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-    {sections.map((section) => (
-      <div>
-        <h3 class={`mb-4 font-semibold ${textColor}`}>{section.title}</h3>
-        <ul class="space-y-2">
-          {section.links?.map((link) => (
-            <li><a href={link.href} class={`${textColor} hover:underline`}>{link.label}</a></li>
-          ))}
-        </ul>
+
+<footer class="w-full border-t border-gray-200 mt-24">
+  <div class="mx-auto max-w-screen-xl px-6 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {sections.map((sec) => (
+        <div>
+          <h3 class="text-sm font-semibold mb-3 text-gray-800">{sec.title}</h3>
+          <ul class="space-y-2">
+            {Array.isArray(sec.links) && sec.links.map((l) => (
+              <li>
+                <a href={l.href} class="text-sm text-gray-600 hover:text-gray-900 hover:underline">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    {note && (
+      <p class="text-xs text-gray-500 mt-8">{note}</p>
+    )}
+
+    {legal.length > 0 && (
+      <div class="flex flex-wrap gap-4 text-xs text-gray-600 mt-6">
+        {legal.map((l) => (
+          <a href={l.href} class="hover:text-gray-900 hover:underline">{l.label}</a>
+        ))}
       </div>
-    ))}
+    )}
   </div>
-  <div class={`mt-10 text-sm ${textColor}`}>© {new Date().getFullYear()} WellDrive</div>
 </footer>
