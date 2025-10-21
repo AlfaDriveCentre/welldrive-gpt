@@ -1,17 +1,56 @@
-import React from 'react';
-import { motion, useInView } from 'framer-motion';
 
-export default function Reveal({ children, type='text', delay=0 }:{children: React.ReactNode, type?: 'text'|'image', delay?: number}) {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
+import React, { useEffect, useRef, useState } from "react";
 
-  const variants = type === 'text'
-    ? { hidden: { opacity: 0, y: 60 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, delay, ease: [0.16,1,0.3,1] } } }
-    : { hidden: { opacity: 0, scale: 0.96 }, show: { opacity: 1, scale: 1, transition: { duration: 1.0, delay, ease: 'easeOut' } } };
+type Props = {
+  className?: string;
+  children: React.ReactNode;
+};
+
+/**
+ * SSR-safe Reveal:
+ * - Server-side (no window): render content visible so static HTML is populated.
+ * - Client-side: apply a soft fade/translate animation.
+ */
+export default function Reveal({ className, children }: Props) {
+  if (typeof window === "undefined") {
+    return <div className={className}>{children}</div>;
+  }
+
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const prefersReduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      setShown(true);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const style: React.CSSProperties = shown
+    ? { opacity: 1, transform: "none", transition: "opacity 600ms ease, transform 600ms ease" }
+    : { opacity: 0, transform: "translateY(12px)", transition: "opacity 600ms ease, transform 600ms ease" };
 
   return (
-    <motion.div ref={ref} initial="hidden" animate={inView ? 'show' : 'hidden'} variants={variants}>
+    <div ref={ref} className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }
