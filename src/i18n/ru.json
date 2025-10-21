@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "wd750": "WD750",
+    "wd770": "WD770",
+    "support": "Support",
+    "contact": "Contact",
+    "language": "Language",
+    "search_placeholder": "Search the site..."
+  },
+  "cta": {
+    "requestQuote": "Request a quote",
+    "seeDetails": "See details"
+  }
+}

@@ -1,0 +1,17 @@
+---
+import Layout from '../Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout title="Destek">
+  <Navbar />
+  <main class="container-x section-y">
+    <ul class="space-y-3 text-lg">
+      <li><a href="#indir" class="text-brand-blue hover:underline">İndirme Merkezi</a></li>
+      <li><a href="#uygulama" class="text-brand-blue hover:underline">Uygulama Merkezi</a></li>
+      <li><a href="/iletisim" class="text-brand-blue hover:underline">Bizimle iletişime geçin</a></li>
+    </ul>
+    <p class="mt-8 text-sm text-gray-500">Bu sayfa, WellDrive.docx içeriğine göre sade yazı linkleriyle gösterim yapar. İçerik birlikte güncellenecektir.</p>
+  </main>
+  <Footer />
+</Layout>

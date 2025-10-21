@@ -1,0 +1,24 @@
+---
+import LanguageSwitch from './LanguageSwitch.tsx';
+import SearchOverlay from './SearchOverlay.tsx';
+const logo = '/assets/welldrive-logo.png';
+---
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-gray-200">
+  <div class="container-x h-16 flex items-center justify-between">
+    <a href="/" class="inline-flex items-center gap-3 focus-ring">
+      <img src={logo} alt="WellDrive" class="h-7 w-auto" loading="eager" width="120" height="28" />
+    </a>
+
+    <nav class="hidden md:flex items-center justify-center gap-8 text-[15px] font-medium text-brand-text">
+      <a href="/wd750" class="hover:opacity-80 focus-ring">WD750</a>
+      <a href="/wd770" class="hover:opacity-80 focus-ring">WD770</a>
+      <a href="/destek" class="hover:opacity-80 focus-ring">Destek</a>
+      <a href="/iletisim" class="hover:opacity-80 focus-ring">İletişim</a>
+    </nav>
+
+    <div class="flex items-center gap-5">
+      <SearchOverlay client:load />
+      <LanguageSwitch client:load />
+    </div>
+  </div>
+</header>
