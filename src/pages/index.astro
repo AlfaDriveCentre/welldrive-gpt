@@ -1,108 +1,72 @@
 ---
-import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Reveal from '../components/Reveal.tsx';
-import { getDict, getDefaultLang, type Lang } from '../i18n';
+import type { Lang } from '../i18n/index';
+import { getDict } from '../i18n/index';
 
-const lang: Lang = getDefaultLang();   // build zamanı TR döner
-const t = getDict(lang);               // JSON sözlüğü (tr/en/ru)
+// SSR-safe: build zamanı sabit dil, runtime dil değişimi LanguageSwitch ile yapılır.
+const lang: Lang = 'tr';
+const t = getDict(lang);
 
-const heroImg = '/assets/welldrive-hero-welldrives.jpg';
-const wd750 = '/assets/welldrive-wd750.png';
-const wd770 = '/assets/welldrive-wd770.png';
-const img2in1_750 = '/assets/welldrive-2in1-wd750.png';
-const img2in1_770 = '/assets/welldrive-2in1-wd770.png';
-import Layout from '../Layout.astro';
+// Güvenli fallback'ler
+const hero = {
+  title: t?.home?.hero?.title ?? 'WellDrive',
+  subtitle: t?.home?.hero?.subtitle ?? 'Yüksek performans, güvenilir teknoloji',
+  ctaPrimary: t?.home?.hero?.ctaPrimary ?? 'Teklif isteyin',
+  ctaSecondary: t?.home?.hero?.ctaSecondary ?? 'Detayları görün',
+};
 ---
-<Layout title="WellDrive — Premium, Güçlü, Akıllı, Kompakt, Esnek ve Size Özel" description={t.home.subtitle}>
-  <Navbar />
 
-  <!-- Hero -->
-  <section class="pt-10 md:pt-14">
-    <div class="container-x text-center">
-      <Reveal type="text">
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-black">WellDrive</h1>
-      </Reveal>
-      <Reveal type="text" delay={0.06}>
-        <h2 class="mt-6 text-3xl md:text-5xl font-semibold">{t.home.subtitle}</h2>
-      </Reveal>
-      <Reveal type="text" delay={0.12}>
-        <p class="mt-6 mx-auto max-w-3xl text-lg md:text-2xl">{t.home.p1}</p>
-        <p class="mt-4 mx-auto max-w-3xl text-lg md:text-xl">{t.home.p2}</p>
-        <p class="mt-2 mx-auto max-w-3xl text-lg md:text-xl">{t.home.p3}</p>
-      </Reveal>
-      <Reveal type="image" delay={0.18}>
-        <img src={heroImg} alt="WellDrive ürün ailesi" class="mt-10 w-full h-auto" loading="eager" width="1600" height="600"/>
-      </Reveal>
-      <div class="mt-8 flex items-center justify-center gap-6">
-        <a href="/iletisim?type=offer" class="inline-flex items-center h-12 px-6 rounded-full bg-brand-blue text-white font-semibold hover:opacity-90 transition focus-ring">{t.cta.requestQuote}</a>
-        <a href="/destek" class="text-brand-blue hover:underline focus-ring">{t.cta.seeDetails}</a>
-      </div>
+<main class="mx-auto max-w-screen-xl px-6 pt-24 pb-16">
+  <section class="text-center">
+    <h1 class="text-4xl md:text-6xl font-semibold tracking-tight text-gray-900">{hero.title}</h1>
+    <p class="mt-4 text-lg md:text-xl text-gray-600">{hero.subtitle}</p>
+
+    <div class="mt-8 flex items-center justify-center gap-4">
+      <a href="/iletisim" class="inline-flex rounded-xl bg-blue-600 px-5 py-3 text-white hover:bg-blue-700 transition">
+        {hero.ctaPrimary}
+      </a>
+      <a href="/wd750" class="inline-flex px-5 py-3 text-blue-600 hover:underline">
+        {hero.ctaSecondary}
+      </a>
     </div>
   </section>
 
-  <!-- WD750 -->
-  <section class="section-y" id="wd750">
-    <div class="container-x grid md:grid-cols-2 items-center gap-8 md:gap-12">
-      <Reveal type="image">
-        <img src={img2in1_750} alt="WD750" class="w-[320px] md:w-[460px] h-auto mx-auto" loading="lazy" width="600" height="500" />
-      </Reveal>
-      <Reveal type="image" delay={0.06}>
-        <img src={wd750} alt="WD750" class="w-[360px] md:w-[500px] h-auto mx-auto" loading="lazy" width="700" height="600" />
+  <section class="mt-24 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <Reveal client:only="react">
+        <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">{t?.home?.wd750?.title ?? 'WD750'}</h2>
+        <p class="mt-3 text-gray-600">{t?.home?.wd750?.desc ?? 'WD750 için açıklama alanı.'}</p>
+        <div class="mt-5 flex gap-4">
+          <a href="/wd750" class="inline-flex rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition">
+            {t?.common?.cta?.offer ?? 'Teklif isteyin'}
+          </a>
+          <a href="/wd750" class="inline-flex px-4 py-2 text-blue-600 hover:underline">
+            {t?.common?.cta?.details ?? 'Detayları görün'}
+          </a>
+        </div>
       </Reveal>
     </div>
-    <div class="container-x">
-      <Reveal type="text" delay={0.08}>
-        <h3 class="section-top text-4xl md:text-5xl font-semibold text-black">{t.home.wd750_title}</h3>
-        <p class="mt-4 text-lg md:text-xl">{t.home.wd750_desc}</p>
-      </Reveal>
-      <div class="mt-6 flex items-center gap-6">
-        <a class="inline-flex items-center h-12 px-6 rounded-full bg-brand-blue text-white font-semibold hover:opacity-90 transition focus-ring">{t.cta.requestQuote}</a>
-        <a href="/wd750" class="text-brand-blue hover:underline focus-ring">{t.cta.seeDetails}</a>
-      </div>
-    </div>
+    <div class="aspect-[16/10] rounded-2xl bg-gray-100"></div>
   </section>
 
-  <!-- WD770 -->
-  <section class="section-y" id="wd770">
-    <div class="container-x grid md:grid-cols-2 items-center gap-8 md:gap-12">
-      <Reveal type="image">
-        <img src={img2in1_770} alt="WD770" class="w-[320px] md:w-[460px] h-auto mx-auto" loading="lazy" width="600" height="500" />
-      </Reveal>
-      <Reveal type="image" delay={0.06}>
-        <img src={wd770} alt="WD770" class="w-[360px] md:w-[500px] h-auto mx-auto" loading="lazy" width="700" height="600" />
+  <section class="mt-24 grid md:grid-cols-2 gap-12 items-center">
+    <div class="order-2 md:order-1">
+      <Reveal client:only="react">
+        <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">{t?.home?.wd770?.title ?? 'WD770'}</h2>
+        <p class="mt-3 text-gray-600">{t?.home?.wd770?.desc ?? 'WD770 için açıklama alanı.'}</p>
+        <div class="mt-5 flex gap-4">
+          <a href="/wd770" class="inline-flex rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition">
+            {t?.common?.cta?.offer ?? 'Teklif isteyin'}
+          </a>
+          <a href="/wd770" class="inline-flex px-4 py-2 text-blue-600 hover:underline">
+            {t?.common?.cta?.details ?? 'Detayları görün'}
+          </a>
+        </div>
       </Reveal>
     </div>
-    <div class="container-x">
-      <Reveal type="text" delay={0.08}>
-        <h3 class="section-top text-4xl md:text-5xl font-semibold text-black">{t.home.wd770_title}</h3>
-        <p class="mt-4 text-lg md:text-xl">{t.home.wd770_desc}</p>
-      </Reveal>
-      <div class="mt-6 flex items-center gap-6">
-        <a class="inline-flex items-center h-12 px-6 rounded-full bg-brand-blue text-white font-semibold hover:opacity-90 transition focus-ring">{t.cta.requestQuote}</a>
-        <a href="/wd770" class="text-brand-blue hover:underline focus-ring">{t.cta.seeDetails}</a>
-      </div>
-    </div>
+    <div class="order-1 md:order-2 aspect-[16/10] rounded-2xl bg-gray-100"></div>
   </section>
+</main>
 
-  <!-- Team / Support -->
-  <section class="section-y">
-    <div class="container-x">
-      <Reveal type="text">
-        <h3 class="text-4xl md:text-5xl font-semibold text-black">{t.home.team_title}</h3>
-      </Reveal>
-      <Reveal type="text" delay={0.06}>
-        <p class="mt-6 text-lg md:text-xl max-w-3xl">{t.home.team_desc}</p>
-      </Reveal>
-      <div class="mt-6 flex items-center gap-6">
-        <a href="/iletisim?type=offer" class="inline-flex items-center h-12 px-6 rounded-full bg-brand-blue text-white font-semibold hover:opacity-90 transition focus-ring">{t.cta.requestQuote}</a>
-        <a href="/destek" class="text-brand-blue hover:underline focus-ring">{t.cta.seeDetails}</a>
-      </div>
-      <Reveal type="image" delay={0.1}>
-        <img src="/assets/welldrive-support.jpg" alt="Uzman ekip" class="mt-10 w-full h-auto rounded-xl" loading="lazy" width="1400" height="700" />
-      </Reveal>
-    </div>
-  </section>
-
-  <Footer />
-</Layout>
+<Footer />
