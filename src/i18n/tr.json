@@ -1,4 +1,37 @@
 {
+  "nav": {
+    "wd750": "WD750",
+    "wd770": "WD770",
+    "support": "Destek",
+    "contact": "İletişim",
+    "language": "Dil / Language",
+    "searchPlaceholder": "Sitede ara…"
+  },
+  "hero": {
+    "title": "Güçlü. Kompakt. Esnek.",
+    "subtitle": "Yeni nesil WellDrive WD Serisi",
+    "desc": "Endüstriyel uygulamalar için yüksek verim, akıllı koruma ve kolay devreye alma. Apple tarzı sade ve hızlı deneyim."
+  },
+  "cta": {
+    "offer": "Teklif isteyin",
+    "details": "Detayları görün"
+  },
+  "wd750": {
+    "title": "WD750 – Akıllı ve Kompakt",
+    "desc": "Genel amaçlı uygulamalar için kompakt gövde, güçlü performans ve kolay kullanım."
+  },
+  "wd770": {
+    "title": "WD770 – HVAC & Aqua Uzmanı",
+    "desc": "Pompa ve fan uygulamalarında enerji tasarrufu, gelişmiş koruma ve hazır makrolar."
+  },
+  "support": {
+    "title": "Destek",
+    "desc": "Kılavuzlar, yazılımlar ve teknik belgeler."
+  },
+  "contact": {
+    "title": "İletişim",
+    "desc": "Uzman ekibimiz sorularınızı yanıtlasın."
+  },
   "footer": {
     "legal": "Yasal",
     "privacy": "Gizlilik",
