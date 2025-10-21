@@ -10,7 +10,11 @@
   "hero": {
     "title": "Powerful. Compact. Flexible.",
     "subtitle": "The new WellDrive WD Series",
-    "desc": "High efficiency, smart protection and easy commissioning for industrial applications."
+    "desc": "High efficiency, smart protection and easy commissioning for industrial applications.",
+    "cta": {
+      "quote": "Get a quote",
+      "details": "See details"
+    }
   },
   "cta": {
     "offer": "Get a quote",
@@ -26,13 +30,53 @@
   },
   "support": {
     "title": "Support",
-    "desc": "Manuals, software and technical docs."
+    "desc": "Manuals, software and technical documents."
   },
   "contact": {
     "title": "Contact",
     "desc": "Our experts are ready to help."
   },
   "footer": {
-    "sections": []
+    "sections": [
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About",
+            "href": "/#about"
+          },
+          {
+            "label": "Contact",
+            "href": "/iletisim"
+          }
+        ]
+      },
+      {
+        "title": "Docs",
+        "links": [
+          {
+            "label": "Support",
+            "href": "/destek"
+          }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Privacy",
+            "href": "/privacy"
+          },
+          {
+            "label": "Cookies",
+            "href": "/cookies"
+          },
+          {
+            "label": "Sitemap",
+            "href": "/sitemap"
+          }
+        ]
+      }
+    ]
   }
 }

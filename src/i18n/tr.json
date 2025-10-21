@@ -10,7 +10,11 @@
   "hero": {
     "title": "Güçlü. Kompakt. Esnek.",
     "subtitle": "Yeni nesil WellDrive WD Serisi",
-    "desc": "Endüstriyel uygulamalar için yüksek verim, akıllı koruma ve kolay devreye alma."
+    "desc": "Endüstriyel uygulamalar için yüksek verim, akıllı koruma ve kolay devreye alma.",
+    "cta": {
+      "quote": "Teklif isteyin",
+      "details": "Detayları görün"
+    }
   },
   "cta": {
     "offer": "Teklif isteyin",
